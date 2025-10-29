@@ -24,7 +24,8 @@ const crearTablaProductos = async () => {
   `;
 
   try {
-    
+    await pool.query(query);
+    console.log('Tabla productos verificada/creada');
   } catch (err) {
     console.error('Error al crear tabla productos:', err.message);
   }
@@ -33,3 +34,4 @@ const crearTablaProductos = async () => {
 crearTablaProductos();
 
 module.exports = pool;
+
