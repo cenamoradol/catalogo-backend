@@ -1,4 +1,3 @@
-// db.js
 const { Pool } = require('pg');
 require('dotenv').config();
 
@@ -9,5 +8,28 @@ const pool = new Pool({
   database: process.env.DB_NAME,
   port: process.env.DB_PORT || 5432,
 });
+
+// Crear tabla si no existe
+const crearTablaProductos = async () => {
+  const query = `
+    CREATE TABLE IF NOT EXISTS productos (
+      id SERIAL PRIMARY KEY,
+      proveedor VARCHAR(255),
+      nombreProducto VARCHAR(255),
+      codigoProducto VARCHAR(100) UNIQUE,
+      precioLPS NUMERIC(10,2),
+      imagenUrl VARCHAR(255),
+      votos INTEGER DEFAULT 0
+    );
+  `;
+
+  try {
+    
+  } catch (err) {
+    console.error('Error al crear tabla productos:', err.message);
+  }
+};
+
+crearTablaProductos();
 
 module.exports = pool;
