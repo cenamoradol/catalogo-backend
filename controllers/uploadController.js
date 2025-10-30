@@ -14,7 +14,7 @@ exports.subirZipImagenes = (req, res) => {
       fs.writeFileSync(filePath, entry.getData());
 
       db.query(
-        'UPDATE productos SET imagenurl = ? WHERE codigoProducto = ?',
+        'UPDATE productos SET imagenurl = ? WHERE codigoproducto = ?',
         [`/uploads/${entry.entryName}`, codigo],
         (err) => {
           if (err) console.error(`Error al actualizar imagen de ${codigo}:`, err.message);
