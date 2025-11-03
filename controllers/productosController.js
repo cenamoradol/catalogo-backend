@@ -62,12 +62,12 @@ exports.votarProducto = async (req, res) => {
 
 
 exports.desvotarProducto = async (req, res) => {
-  const { codigoproducto } = req.params;
+  const { codigoProducto } = req.params;
 
   try {
     await db.query(
-      'UPDATE productos SET votos = GREATEST(votos - 1, 0) WHERE codigoproducto = $1',
-      [codigoproducto]
+      'UPDATE productos SET votos = GREATEST(votos - 1, 0) WHERE codigoProducto = $1',
+      [codigoProducto]
     );
     res.json({ mensaje: 'Voto eliminado correctamente' });
   } catch (err) {
