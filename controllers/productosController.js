@@ -39,20 +39,27 @@ exports.obtenerProductos = async (req, res) => {
   }
 };
 
+
 exports.votarProducto = async (req, res) => {
-  const { codigoproducto } = req.params;
+  const { codigoProducto } = req.params; // ← usa el mismo nombre que en la ruta
 
   try {
-    await db.query(
+    const result = await db.query(
       'UPDATE productos SET votos = votos + 1 WHERE codigoProducto = $1',
-      [codigoproducto]
+      [codigoProducto]
     );
+
+    if (result.rowCount === 0) {
+      return res.status(404).json({ error: 'Producto no encontrado' });
+    }
+
     res.json({ mensaje: 'Voto registrado correctamente' });
   } catch (err) {
     console.error('Error al votar:', err.message);
     res.status(500).json({ error: 'Error al votar' });
   }
 };
+
 
 exports.desvotarProducto = async (req, res) => {
   const { codigoproducto } = req.params;
