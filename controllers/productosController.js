@@ -44,7 +44,7 @@ exports.votarProducto = async (req, res) => {
 
   try {
     await db.query(
-      'UPDATE productos SET votos = votos + 1 WHERE codigoproducto = $1',
+      'UPDATE productos SET votos = votos + 1 WHERE codigoProducto = $1',
       [codigoproducto]
     );
     res.json({ mensaje: 'Voto registrado correctamente' });
