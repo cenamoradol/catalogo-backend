@@ -87,13 +87,10 @@ exports.obtenerProveedores = async (req, res) => {
 };
 
 exports.eliminarProducto = async (req, res) => {
-  const { codigoProducto } = req.params;
+  const { id } = req.params;
 
   try {
-    const result = await db.query(
-      'DELETE FROM productos WHERE codigoProducto = $1',
-      [codigoProducto]
-    );
+    const result = await db.query('DELETE FROM productos WHERE id = $1', [id]);
 
     if (result.rowCount === 0) {
       return res.status(404).json({ error: 'Producto no encontrado' });
