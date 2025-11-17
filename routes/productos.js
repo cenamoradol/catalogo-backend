@@ -7,7 +7,7 @@ router.get('/', obtenerProductos); // ← nuevo endpoint GET
 router.post('/votar/:codigoProducto', votarProducto);
 router.post('/desvotar/:codigoProducto', desvotarProducto);
 router.get('/proveedores', obtenerProveedores);
-
+router.delete('/:codigoProducto', eliminarProducto);
 
 
 
