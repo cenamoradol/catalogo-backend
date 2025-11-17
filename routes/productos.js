@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { importarProductos, obtenerProductos, votarProducto, desvotarProducto , obtenerProveedores} = require('../controllers/productosController');
+const { importarProductos, obtenerProductos, votarProducto, desvotarProducto , obtenerProveedores, eliminarProducto} = require('../controllers/productosController');
 
 router.post('/importar', importarProductos);
 router.get('/', obtenerProductos); // ← nuevo endpoint GET
